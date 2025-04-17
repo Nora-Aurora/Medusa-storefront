@@ -18,6 +18,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@medusajs/js-sdk": "^2.7.0",
+    "@medusajs/types": "^2.7.0",
     "@tanstack/react-query": "^5.74.3",
     "next": "15.3.0",
     "react": "^19.0.0",
