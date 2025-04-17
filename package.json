@@ -23,7 +23,8 @@
     "@tanstack/react-query": "^5.74.3",
     "next": "15.3.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sonner": "^2.0.3"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3",
@@ -39,6 +40,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "daisyui": "^5.0.23",
     "eslint": "^9.24.0",
     "eslint-config-next": "15.3.0",
     "eslint-plugin-storybook": "^0.12.0",

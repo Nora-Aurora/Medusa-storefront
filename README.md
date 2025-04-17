@@ -13,7 +13,8 @@ pnpm dev
 # or
 bun dev
 ```
-## commit msg Rules 
+
+## commit msg Rules
 
 - build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
 - ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
@@ -25,7 +26,8 @@ bun dev
 - style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
 - test: Adding missing tests or correcting existing tests
 
-## To run the storybook 
+## To run the storybook
+
 ```bash
 pnpm run storybook
- ```
+```

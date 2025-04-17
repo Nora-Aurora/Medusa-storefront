@@ -1,44 +1,47 @@
-'use client'
-import { sdk } from '@/lib/medusa/config'
-import { useQuery } from '@tanstack/react-query'
-import { HttpTypes } from "@medusajs/types"
+'use client';
+import { useGlobalContext } from '@/lib/context/GlobalContext';
+import { sdk } from '@/lib/medusa/config';
+import { HttpTypes } from '@medusajs/types';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 export const fetchUsers = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/users')
-  if (!res.ok) throw new Error('Network response was not ok')
-  return res.json()
-}
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  if (!res.ok) throw new Error('Network response was not ok');
+  return res.json();
+};
 
 export const fetchRegions = async (): Promise<HttpTypes.StoreRegion[]> => {
-    const res = await sdk.store.region.list()
-    return res.regions
-  }
+  const res = await sdk.store.region.list();
+  return res.regions;
+};
 
 export default function UserList() {
+  const { setLoading, setError } = useGlobalContext();
   const { data, isLoading, error } = useQuery({
     queryKey: ['users'],
     queryFn: fetchUsers,
-  })
+  });
 
-  const {data:regionData,isLoading:isLoadingRegion,error:errorRegion} = useQuery<HttpTypes.StoreRegion[]>({
+  const {
+    data: regionData,
+    isLoading: isLoadingRegion,
+    error: errorRegion,
+  } = useQuery<HttpTypes.StoreRegion[]>({
     queryKey: ['regions'],
     queryFn: fetchRegions,
-  })
+  });
 
-  console.log('regionData', regionData)
-  if (isLoading) return <p>Loading...</p>
-  if (error instanceof Error) return <p>Error: {error.message}</p>
-
+  useEffect(() => {
+    setLoading(isLoadingRegion);
+    setError(errorRegion?.message || null);
+  }, [isLoadingRegion, errorRegion]);
   return (
     <ul>
       {/* {data.map((user: any) => (
         <li key={user.id}>{user.name}</li>
       ))} */}
-      {
-        regionData?.map((region) => (
-          <li key={region.currency_code}>{region.name}</li>
-        ))
-      }
+      {regionData?.map(region => <li key={region.currency_code}>{region.name}</li>)}
     </ul>
-  )
+  );
 }
