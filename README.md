@@ -24,3 +24,8 @@ bun dev
 - refactor: A code change that neither fixes a bug nor adds a feature
 - style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
 - test: Adding missing tests or correcting existing tests
+
+## To run the storybook 
+```bash
+pnpm run storybook
+ ```
